@@ -329,7 +329,7 @@ describe('useCart Hook', () => {
 
   it('should not be able to update a product that does not exist', async () => {
     const productId = 4;
-
+    
     apiMock.onGet(`stock/${productId}`).reply(404);
 
     const { result, waitFor } = renderHook(useCart, {
@@ -339,7 +339,7 @@ describe('useCart Hook', () => {
     act(() => {
       result.current.updateProductAmount({ amount: 3, productId });
     });
-
+    
     await waitFor(
       () => {
         expect(mockedToastError).toHaveBeenCalledWith(
